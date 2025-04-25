@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Coś się dzieje...</title>
+</head>
+<body style="background-color:black; color:white; display:flex; align-items:center; justify-content:center; height:100vh; font-family:sans-serif; flex-direction:column;">
+  <h1>Ładowanie...</h1>
+  <audio id="moan" autoplay>
+    <source src="moan.mp3" type="audio/mpeg">
+    Twoja przeglądarka nie wspiera dźwięku HTML5.
+  </audio>
+  <script>
+    window.onload = function() {
+      const audio = document.getElementById("moan");
+      audio.play().catch(e => {
+        console.log("Autoplay zablokowany, czekam na interakcję.");
+        document.body.addEventListener('click', () => {
+          audio.play();
+        }, { once: true });
+      });
+    };
+  </script>
+</body>
+</html>
